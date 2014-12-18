@@ -44,7 +44,7 @@ class MigrationsCommand extends Command{
      */
     public function fire()
     {
-        $this->call('migrate:publish', ['package' => 'vjroby/vjroby-laravel-nonce']);
+        $this->call('migrate:publish', ['package' => 'vjroby/laravel-nonce']);
         $this->call('dump-autoload');
     }
 

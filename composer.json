@@ -1,5 +1,5 @@
 {
-    "name": "vjroby/laravel-nounce",
+    "name": "vjroby/laravel-nonce",
     "description": "This is a package for integrating nonces in Laravel",
     "authors": [
         {
