@@ -13,8 +13,8 @@ class CreateNonceTable extends Migration {
 	public function up()
 	{
 		Schema::create('nonce', function (Blueprint $table){
-			$table->string('id',40);
-			$table->text('data')->nullable();
+			$table->string('id',255);
+			$table->string('data',255)->nullable();
 			$table->nullableTimestamps();
 
 			$table->unique(['id', 'data']);
