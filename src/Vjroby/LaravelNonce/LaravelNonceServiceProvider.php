@@ -9,7 +9,7 @@ class LaravelNonceServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = true;
+	protected $defer = false;
 
 	/**
 	 * Bootstrap the application events.
@@ -18,7 +18,7 @@ class LaravelNonceServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('vjroby/laravel-nonce');
+		$this->package('vjroby/laravel-nonce','vjroby-laravel-nonce');
 	}
 
 	/**
@@ -28,9 +28,25 @@ class LaravelNonceServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+		// TODO change the database connection from the config
+
+		$this->app->bind('vjroby-laravel-nonce', function($app){
+			return new Nonce();
+		});
+
+		$this->registerCommands();
 	}
 
+	/**
+	 * Registers some utility commands with artisan
+	 * @return void
+	 */
+	public function registerCommands()
+	{
+		$this->app->bind('command.vjroby-laravel-nonce.migrations', 'Vjroby\LaravelNonce\Console\MigrationsCommand');
+		$this->commands('command.vjroby-laravel-nonce.migrations');
+
+	}
 	/**
 	 * Get the services provided by the provider.
 	 *
@@ -38,7 +54,7 @@ class LaravelNonceServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array();
+		return ['vjroby-laravel-nonce'];
 	}
 
 }
