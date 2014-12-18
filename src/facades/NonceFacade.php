@@ -6,7 +6,7 @@
  * Time: 14:08
  */
 
-namespace Vjroby\Facades;
+namespace Vjroby\LaravelNonce\Facades;
 
 
 use Illuminate\Support\Facades\Facade;
