@@ -1,0 +1,23 @@
+{
+    "name": "vjroby/laravel-nounce",
+    "description": "",
+    "authors": [
+        {
+            "name": "Robert Gabriel Dinu",
+            "email": "eu@robertgabriel.ro"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Vjroby\\LaravelNounce\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
