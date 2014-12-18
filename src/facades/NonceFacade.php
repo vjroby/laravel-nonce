@@ -6,7 +6,7 @@
  * Time: 14:08
  */
 
-namespace Vjroby\Facade;
+namespace Vjroby\Facades;
 
 
 use Illuminate\Support\Facades\Facade;
