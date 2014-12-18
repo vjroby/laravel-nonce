@@ -16,8 +16,8 @@
         "classmap": [
             "src/migrations"
         ],
-        "psr-0": {
-            "Vjroby\\LaravelNounce\\": "src/"
+        "psr-4": {
+            "Vjroby\\LaravelNonce": "src/"
         }
     },
     "minimum-stability": "stable",
