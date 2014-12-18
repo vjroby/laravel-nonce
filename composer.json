@@ -17,7 +17,7 @@
             "src/migrations"
         ],
         "psr-4": {
-            "Vjroby\\LaravelNonce": "src/"
+            "Vjroby\\LaravelNonce\\": "src/"
         }
     },
     "minimum-stability": "stable",
