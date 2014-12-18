@@ -51,7 +51,11 @@ class NonceStorage implements NonceInterface{
     public function setNonce($id, $data)
     {
         $this->getConnection()->table('nonce')
-            ->insert(['id' => $id, 'data' => $data]);
+            ->insert([
+                'id' => $id,
+                'data' => $data,
+                'created_at' => \DB::raw('NOW()')
+            ]);
     }
 
     /**
