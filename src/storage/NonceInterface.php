@@ -1,6 +1,6 @@
 <?php
 
-namespace Vjroby\LaravelNonce;
+namespace Vjroby\LaravelNonce\Storage;
 
 
 interface NonceInterface {

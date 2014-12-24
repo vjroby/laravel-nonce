@@ -6,7 +6,7 @@
  * Time: 11:45
  */
 
-namespace Vjroby\LaravelNonce;
+namespace Vjroby\LaravelNonce\Storage;
 
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
 
