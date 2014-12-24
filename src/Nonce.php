@@ -8,7 +8,7 @@
 
 namespace Vjroby\LaravelNonce;
 
-use Vjroby\LaravelNonce\NonceStorage;
+use Vjroby\LaravelNonce\Storage\NonceStorage;
 
 class Nonce extends NonceStorage{
 
