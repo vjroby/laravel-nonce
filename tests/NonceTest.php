@@ -6,7 +6,7 @@
  * Time: 21:05
  */
 
-class NonceTest extends TestCase{
+class NonceTest extends PHPUnit_Framework_TestCase{
 
     public function testClass(){
         $nonce = new \Vjroby\LaravelNonce\Nonce();
