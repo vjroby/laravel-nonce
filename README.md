@@ -1,4 +1,4 @@
-
+[![Build Status](https://travis-ci.org/vjroby/laravel-nonce.svg?branch=master)](https://travis-ci.org/vjroby/laravel-nonce)
 #This is a Laravel package for using Nonces for HTTP Requests.
 
 Instalation:
