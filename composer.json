@@ -1,10 +1,16 @@
 {
     "name": "vjroby/laravel-nonce",
-    "description": "This is a package for integrating nonces in Laravel",
+    "description": "This is a package for integrating nonces in Laravel in requests",
+    "keywords": [
+        "laravel","http","nonce","rest"
+    ],
+    "homepage": "https://github.com/vjroby/laravel-nonce",
     "authors": [
         {
             "name": "Robert Gabriel Dinu",
-            "email": "eu@robertgabriel.ro"
+            "email": "eu@robertgabriel.ro",
+            "homepage":"http://robertgabriel.ro",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -12,14 +18,19 @@
         "illuminate/support": "4.2.*",
         "illuminate/database": "4.2.*"
     },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*"
+    },
     "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
         "psr-4": {
             "Vjroby\\LaravelNonce\\": "src/"
         }
     },
     "minimum-stability": "stable",
-    "license": "MIT"
+    "license": "MIT",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
 }
