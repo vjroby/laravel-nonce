@@ -18,7 +18,7 @@ add to app providers:
 and to aliases:
 
 ```
-'Nonce'			=> 'Vjroby\Facade\NonceFacade',
+'Nonce'			=> 'Vjroby\LaravelNonce\Facades\NonceFacade',
 ```
 
 so it can be used as static class in the project.
