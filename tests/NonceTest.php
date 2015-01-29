@@ -6,7 +6,7 @@
  * Time: 21:05
  */
 
-class NonceTest extends PHPUnit_Framework_TestCase{
+class NonceTest extends Illuminate\Foundation\Testing\TestCase{
 
     public function testClass(){
 //        $nonce = new \Vjroby\LaravelNonce\Nonce();
@@ -15,5 +15,27 @@ class NonceTest extends PHPUnit_Framework_TestCase{
         //TODO write tests
         $this->assertTrue(true);
 
+    }
+
+    /**
+     * Creates the application.
+     *
+     * Needs to be implemented by subclasses.
+     *
+     * @return \Symfony\Component\HttpKernel\HttpKernelInterface
+     */
+    public function createApplication()
+    {
+        $unitTesting = true;
+
+        $testEnvironment = 'testing';
+
+        $app = require __DIR__.'/bootstrap/start.php';
+
+        $app->register('Vjroby\LaravelNonce\LaravelNonceServiceProvider');
+
+//        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
+
+        return $app;
     }
 }
