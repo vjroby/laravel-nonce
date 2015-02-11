@@ -8,6 +8,7 @@
 
 namespace Vjroby\LaravelNonce\Storage;
 
+use Carbon\Carbon;
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
 
 
@@ -54,7 +55,7 @@ class NonceStorage implements NonceInterface{
             ->insert([
                 'id' => $id,
                 'data' => $data,
-                'created_at' => \DB::raw('NOW()')
+                'created_at' => Carbon::now()
             ]);
     }
 
