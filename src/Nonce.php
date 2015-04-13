@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Robert Gabriel Dinu
- * Date: 12/18/14
- * Time: 11:39
- */
 
 namespace Vjroby\LaravelNonce;
 
