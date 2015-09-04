@@ -92,4 +92,6 @@ class NonceTest extends Illuminate\Foundation\Testing\TestCase{
 //            $migrationClass->up();
 //        }
     }
+
+
 }

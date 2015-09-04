@@ -26,7 +26,6 @@ class NonceStorage implements NonceInterface{
 
     public function __construct($connection = null){
         $this->connection = \DB::connection($connection);
-//        $this->connectionName = 'default';
     }
 
     public function setResolver(Resolver $resolver)
@@ -64,12 +63,14 @@ class NonceStorage implements NonceInterface{
      * @param $data - text
      * @return mixed
      */
-    public function checkNonce($id, $data)
+    public function checkNonce($id, $data = false)
     {
-        $query = $this->getConnection()->table('nonce')
-            ->select('nonce.id')
-            ->where('id', '=',$id)
-            ->where('data', '=', $data)->get();
+        if ($data === false){
+            $query = $this->checkNonceWithoutData($id);
+        }else{
+            $query = $this->checkNonceWithData($id,$data);
+        }
+
 
         if (count($query) == 0){
             return true;
@@ -78,4 +79,20 @@ class NonceStorage implements NonceInterface{
         }
 
     }
+
+    protected function checkNonceWithData($id, $data)
+    {
+        return $query = $this->getConnection()->table('nonce')
+            ->select('nonce.id')
+            ->where('id', '=',$id)
+            ->where('data', '=', $data)->get();
+    }
+
+    protected function checkNonceWithoutData($id)
+    {
+        return $query = $this->getConnection()->table('nonce')
+            ->select('nonce.id')
+            ->where('id', '=',$id)->get();
+    }
+
 } // end of class

@@ -17,6 +17,6 @@ interface NonceInterface {
      * @param $data - text
      * @return mixed
      */
-    public function checkNonce($id, $data);
+    public function checkNonce($id, $data = false);
 
 } // end of interface
