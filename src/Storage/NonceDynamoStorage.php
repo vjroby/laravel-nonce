@@ -2,6 +2,7 @@
 
 namespace Vjroby\LaravelNonce\Storage;
 
+use Aws\DynamoDb\DynamoDbClient;
 
 class NonceDynamoStorage implements NonceInterface
 {
