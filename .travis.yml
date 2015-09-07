@@ -15,5 +15,6 @@ script: phpunit
 
 branches:
   only:
+    - develop
     - master
     - 1.x.x
