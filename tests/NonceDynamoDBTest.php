@@ -71,4 +71,14 @@ class NonceDynamoDBTest extends Illuminate\Foundation\Testing\TestCase
         \Aws\DynamoDb\DynamoDbClient::shouldReceive('factory')->once();
     }
 
+    public function testCheckNonce()
+    {
+        $token = 'testtoken';
+        $data = 'test data';
+        $this->dynamoDbClient->shouldReceive('getItem')->once();
+
+        \Nonce::checkNonce($token, $data);
+
+    }
+
 } // end of class
