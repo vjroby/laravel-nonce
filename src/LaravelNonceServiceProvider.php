@@ -1,5 +1,7 @@
 <?php namespace Vjroby\LaravelNonce;
 
+use Aws\DynamoDb\DynamoDbClient;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Vjroby\LaravelNonce\Storage\NonceDynamoStorage;
@@ -10,6 +12,7 @@ class LaravelNonceServiceProvider extends ServiceProvider
 
     const DATABASE_TYPE_MYSQL = 'mysql';
     const DATABASE_TYPE_DYNAMODB = 'dynamodb';
+    const DEFAULT_DYNAMODB_TABLE_NAME = 'nonces';
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -71,9 +74,23 @@ class LaravelNonceServiceProvider extends ServiceProvider
      */
     private function getNonceObjectByDatabaseType()
     {
+
         switch (Config::get('nonce.database_type')) {
 
             case self::DATABASE_TYPE_DYNAMODB:
+                if (isset($this->client)){
+                    return $this->client;
+                }
+                $dynamoDbDomain = App::make('aws')->get('DynamoDb');
+
+                $client = DynamoDbClient::factory([
+                    'credentials' => $dynamoDbDomain->getCredentials(),
+                    'region' => Config::get('nonce.dynamodb_table_name')
+                ]);
+
+                $nonceDynamo = new NonceDynamoStorage();
+                $nonceDynamo->setClient($client);
+                $nonceDynamo->setTableName(Config::get('nonce.dynamodb_table_name'));
                 return new NonceDynamoStorage();
                 break;
 

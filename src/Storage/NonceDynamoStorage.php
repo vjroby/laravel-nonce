@@ -3,9 +3,37 @@
 namespace Vjroby\LaravelNonce\Storage;
 
 use Aws\DynamoDb\DynamoDbClient;
+use Carbon\Carbon;
 
-class NonceDynamoStorage implements NonceInterface
+class NonceDynamoStorage implements NonceInterface, NonceDynamoStorageInterface
 {
+    const TOKEN_FIELD = 'token';
+    const CREATED_AT_FIELD = 'created_at';
+    const DATA_FIELD = 'data';
+
+
+    /**
+     * @var DynamoDbClient
+     */
+    protected $client;
+
+    protected $tableName;
+
+    /**
+     * @return mixed
+     */
+    protected function getTableName()
+    {
+        return $this->tableName;
+    }
+
+    /**
+     * @return DynamoDbClient
+     */
+    protected function getClient()
+    {
+        return $this->client;
+    }
 
     /**
      * @param $id - string max 40 chars
@@ -14,7 +42,20 @@ class NonceDynamoStorage implements NonceInterface
      */
     public function setNonce($id, $data)
     {
-        // TODO: Implement setNonce() method.
+        $data = is_null($data) ? [self::TYPE_NULL => true] : [self::TYPE_STRING => $data];
+        return $this->getClient()->putItem([
+                self::TABLE_NAME => $this->getTableName(),
+                self::ITEM => [
+                    self::TOKEN_FIELD => [
+                        self::TYPE_STRING => $id
+                    ],
+                    self::DATA_FIELD => $data,
+                    self::CREATED_AT_FIELD => [
+                        self::TYPE_STRING => Carbon::now()->format('Y-m-d H:i:s'),
+                    ]
+                ]
+            ]
+        );
     }
 
     /**
@@ -24,6 +65,34 @@ class NonceDynamoStorage implements NonceInterface
      */
     public function checkNonce($id, $data)
     {
-        // TODO: Implement checkNonce() method.
+        return $this->getClient()->getItem([
+            self::TABLE_NAME => $this->getTableName(),
+            "Key" => [
+                self::TOKEN_FIELD  => [
+                    self::TYPE_STRING => $id
+                ],
+            ],
+            "ConsistentRead" => true
+
+        ]);
     }
+
+    /**
+     * @param $awsClient
+     * @return void
+     */
+    public function setClient($awsClient)
+    {
+        $this->client = $awsClient;
+    }
+
+    /**
+     * @param string $tableName
+     * @return mixed
+     */
+    public function setTableName($tableName)
+    {
+        $this->tableName;
+    }
+
 }

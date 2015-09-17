@@ -23,4 +23,26 @@ return [
     'database_type' => 'mysql',
 
 
+    /*
+  |--------------------------------------------------------------------------
+  | DynamoDB table name
+  |--------------------------------------------------------------------------
+  |
+  | The package supports mysql and DynamoDB (AWS NoSQL)
+  |
+  |     'database_type' => 'dynamodb',
+  */
+
+    'dynamodb_table_name' => 'nonces',
+    /*
+  |--------------------------------------------------------------------------
+  | DynamoDB table name
+  |--------------------------------------------------------------------------
+  |
+  | The package supports mysql and DynamoDB (AWS NoSQL)
+  |
+  |     'database_type' => 'dynamodb',
+  */
+
+    'dynamodb_table_region' => 'us-west-2',
 ];
