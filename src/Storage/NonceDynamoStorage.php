@@ -10,6 +10,8 @@ class NonceDynamoStorage implements NonceInterface, NonceDynamoStorageInterface
     const TOKEN_FIELD = 'token';
     const CREATED_AT_FIELD = 'created_at';
     const DATA_FIELD = 'data';
+    const DATA = 'Data';
+    const CONSISTENT_READ = "ConsistentRead";
 
 
     /**
@@ -17,6 +19,9 @@ class NonceDynamoStorage implements NonceInterface, NonceDynamoStorageInterface
      */
     protected $client;
 
+    /**
+     * @var
+     */
     protected $tableName;
 
     /**
@@ -65,16 +70,8 @@ class NonceDynamoStorage implements NonceInterface, NonceDynamoStorageInterface
      */
     public function checkNonce($id, $data)
     {
-        return $this->getClient()->getItem([
-            self::TABLE_NAME => $this->getTableName(),
-            "Key" => [
-                self::TOKEN_FIELD  => [
-                    self::TYPE_STRING => $id
-                ],
-            ],
-            "ConsistentRead" => true
-
-        ]);
+        $item = $this->getItem($id, $data);
+        return is_null($item);
     }
 
     /**
@@ -93,6 +90,27 @@ class NonceDynamoStorage implements NonceInterface, NonceDynamoStorageInterface
     public function setTableName($tableName)
     {
         $this->tableName;
+    }
+
+    /**
+     * @param $id
+     * @param $data
+     * @return mixed|null
+     */
+    protected function getItem($id, $data)
+    {
+        $response = $this->getClient()->getItem([
+            self::TABLE_NAME => $this->getTableName(),
+            "Key" => [
+                self::TOKEN_FIELD => [
+                    self::TYPE_STRING => $id
+                ],
+            ],
+            self::CONSISTENT_READ => true
+
+        ]);
+
+        return $response->get(self::DATA);
     }
 
 }
