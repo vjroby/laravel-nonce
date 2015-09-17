@@ -1,5 +1,6 @@
 <?php
 
+use Aws\Common\Aws;
 use Illuminate\Support\Facades\App;
 use Mockery as m;
 use Mockery\MockInterface;
@@ -9,6 +10,8 @@ class NonceDynamoDBTest extends Illuminate\Foundation\Testing\TestCase
     protected $databaseType = 'dynamodb';
     protected $dynamoDBtableName = 'nonces';
     protected $dynamoRegion = 'us-west-2';
+
+    private $serviceBuilder;
     /**
      * @var MockInterface
      */
@@ -59,6 +62,8 @@ class NonceDynamoDBTest extends Illuminate\Foundation\Testing\TestCase
     protected function mockAws()
     {
         $credentialsTestArray = ['credentials' => 'test'];
+        $this->serviceBuilder = Aws::factory();
+        $this->serviceBuilder->enableFacades();
 
         $this->mockAws = m::mock('Awx');
         $this->dynamoDbClient = m::mock('DynamoDbClient');
@@ -66,6 +71,7 @@ class NonceDynamoDBTest extends Illuminate\Foundation\Testing\TestCase
         $this->dynamoDbClient->shouldReceive('get')->once()->with('DynamoDb')
             ->andReturnSelf();
         $this->dynamoDbClient->shouldReceive('getCredentials')->once()->andReturn($credentialsTestArray);
+
 
 
         \Aws\DynamoDb\DynamoDbClient::shouldReceive('factory')->once();
