@@ -53,7 +53,7 @@ class NonceDynamoDBTest extends Illuminate\Foundation\Testing\TestCase
         $this->app['config']->set('nonce.dynamodb_table_name', $this->dynamoDBtableName);
         $this->app['config']->set('nonce.dynamodb_table_region', $this->dynamoRegion);
 
-
+        $this->mockAws();
     }
 
     protected function mockAws()
