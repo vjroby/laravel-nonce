@@ -47,7 +47,8 @@ class NonceDynamoStorage implements NonceInterface, NonceDynamoStorageInterface
      */
     public function setNonce($id, $data)
     {
-        $data = is_null($data) ? [self::TYPE_NULL => true] : [self::TYPE_STRING => $data];
+        $data = (is_null($data) || strlen($data) == 0)
+            ? [self::TYPE_NULL => true] : [self::TYPE_STRING => $data];
         return $this->getClient()->putItem([
                 self::TABLE_NAME => $this->getTableName(),
                 self::ITEM => [
