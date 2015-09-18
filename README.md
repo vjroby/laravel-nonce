@@ -5,7 +5,7 @@ Instalation:
 
 Using Composer, just add 
 ```
-"vjroby/laravel-nonce": "dev-master"
+"vjroby/laravel-nonce": ""1.0.5"
 ```
 to your `compsoer.json` file and run a compposer update
 
