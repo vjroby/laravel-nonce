@@ -30,7 +30,7 @@
             "src/config"
         ],
         "psr-4": {
-            "Vjroby\\": "src/Vjroby"
+            "Vjroby\\LaravelNonce\\": "src/Vjroby/LaravelNonce"
         }
     },
     "minimum-stability": "stable",
