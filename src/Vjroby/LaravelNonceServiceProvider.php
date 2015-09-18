@@ -28,6 +28,7 @@ class LaravelNonceServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         $this->package('vjroby/laravel-nonce', 'vjroby-laravel-nonce');
     }
 
