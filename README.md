@@ -33,4 +33,7 @@ and then:
 
 `php artisan migrate`
 
+For publishing configuration file:
+
+`php artisan config:publish vjroby/laravel-nonce`
 
