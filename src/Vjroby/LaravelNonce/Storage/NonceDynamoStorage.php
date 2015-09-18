@@ -110,7 +110,7 @@ class NonceDynamoStorage implements NonceInterface, NonceDynamoStorageInterface
 
         ]);
 
-        return $response->get(self::DATA);
+        return $response->get(self::ITEM);
     }
 
 }
