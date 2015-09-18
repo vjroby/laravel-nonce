@@ -43,7 +43,7 @@ class LaravelNonceServiceProvider extends ServiceProvider
 
         $this->app->bind('vjroby-laravel-nonce', function ($app) {
 
-            return $this->getNonceObjectByDatabaseType();
+            return $this->getNonceObjectByDatabaseType($app);
         });
 
         $this->registerCommands();
@@ -73,10 +73,10 @@ class LaravelNonceServiceProvider extends ServiceProvider
     /**
      * @return NonceInterface
      */
-    private function getNonceObjectByDatabaseType()
+    private function getNonceObjectByDatabaseType($app)
     {
 
-        switch (Config::get('nonce.database_type')) {
+        switch ($app['config']->get('vjroby-laravel-nonce::database_type')) {
 
             case self::DATABASE_TYPE_DYNAMODB:
                 if (isset($this->client)){
@@ -86,12 +86,12 @@ class LaravelNonceServiceProvider extends ServiceProvider
 
                 $client = DynamoDbClient::factory([
                     'credentials' => $dynamoDbDomain->getCredentials(),
-                    'region' => Config::get('nonce.dynamodb_table_name')
+                    'region' => $app['config']->get('vjroby-laravel-nonce::us-west-2')
                 ]);
 
                 $nonceDynamo = new NonceDynamoStorage();
                 $nonceDynamo->setClient($client);
-                $nonceDynamo->setTableName(Config::get('nonce.dynamodb_table_name'));
+                $nonceDynamo->setTableName($app['config']->get('vjroby-laravel-nonce::dynamodb_table_name'));
                 return new NonceDynamoStorage();
                 break;
 
