@@ -5,7 +5,7 @@ Instalation:
 
 Using Composer, just add 
 ```
-"vjroby/laravel-nonce": "1.0.5"
+"vjroby/laravel-nonce": "1.1.0"
 ```
 to your `compsoer.json` file and run a compposer update
 
@@ -37,3 +37,4 @@ For publishing configuration file:
 
 `php artisan config:publish vjroby/laravel-nonce`
 
+For integrating with DynamoDB follow the configuration file.
