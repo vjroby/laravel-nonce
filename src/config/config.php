@@ -21,6 +21,16 @@ return [
     |     'database_type' => 'dynamodb',
     */
     'database_type' => 'mysql',
+     /*
+    |--------------------------------------------------------------------------
+    | Database Type
+    |--------------------------------------------------------------------------
+    |
+    | The package supports mysql and DynamoDB (AWS NoSQL)
+    |
+    |     'database_type' => 'dynamodb',
+    */
+    'database_connection' => 'mysql',
 
 
     /*

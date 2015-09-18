@@ -26,7 +26,6 @@ class NonceStorage implements NonceInterface{
 
     public function __construct($connection = null){
         $this->connection = \DB::connection($connection);
-//        $this->connectionName = 'default';
     }
 
     public function setResolver(Resolver $resolver)

@@ -75,7 +75,7 @@ class LaravelNonceServiceProvider extends ServiceProvider
      */
     private function getNonceObjectByDatabaseType($app)
     {
-
+        $connection = $app['config']->get('vjroby-laravel-nonce::database_connection');
         switch ($app['config']->get('vjroby-laravel-nonce::database_type')) {
 
             case self::DATABASE_TYPE_DYNAMODB:
@@ -96,11 +96,11 @@ class LaravelNonceServiceProvider extends ServiceProvider
                 break;
 
             case self::DATABASE_TYPE_MYSQL:
-                return new Nonce();
+                return new Nonce($connection);
                 break;
 
             default:
-                return new Nonce();
+                return new Nonce($connection);
                 break;
         }
     }
