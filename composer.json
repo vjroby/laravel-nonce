@@ -25,8 +25,12 @@
         "aws/aws-sdk-php-laravel": "1.*"
     },
     "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/config"
+        ],
         "psr-4": {
-            "Vjroby\\LaravelNonce\\": "src"
+            "Vjroby\\": "src/Vjroby"
         }
     },
     "minimum-stability": "stable",

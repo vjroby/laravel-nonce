@@ -2,7 +2,6 @@
 
 use Aws\DynamoDb\DynamoDbClient;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Vjroby\LaravelNonce\Storage\NonceDynamoStorage;
 use Vjroby\LaravelNonce\Storage\NonceInterface;
