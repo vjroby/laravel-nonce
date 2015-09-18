@@ -91,7 +91,7 @@ class LaravelNonceServiceProvider extends ServiceProvider
                 $nonceDynamo = new NonceDynamoStorage();
                 $nonceDynamo->setClient($client);
                 $nonceDynamo->setTableName($app['config']->get('vjroby-laravel-nonce::dynamodb_table_name'));
-                return new NonceDynamoStorage();
+                return $nonceDynamo;
                 break;
 
             case self::DATABASE_TYPE_MYSQL:

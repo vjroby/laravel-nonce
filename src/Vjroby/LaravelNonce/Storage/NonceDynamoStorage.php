@@ -89,7 +89,7 @@ class NonceDynamoStorage implements NonceInterface, NonceDynamoStorageInterface
      */
     public function setTableName($tableName)
     {
-        $this->tableName;
+        $this->tableName = $tableName;
     }
 
     /**
