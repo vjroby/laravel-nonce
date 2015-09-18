@@ -85,7 +85,7 @@ class LaravelNonceServiceProvider extends ServiceProvider
 
                 $client = DynamoDbClient::factory([
                     'credentials' => $dynamoDbDomain->getCredentials(),
-                    'region' => $app['config']->get('vjroby-laravel-nonce::us-west-2')
+                    'region' => $app['config']->get('vjroby-laravel-nonce::dynamodb_table_region')
                 ]);
 
                 $nonceDynamo = new NonceDynamoStorage();
