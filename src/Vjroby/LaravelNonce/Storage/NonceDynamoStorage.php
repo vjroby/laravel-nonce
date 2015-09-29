@@ -45,7 +45,7 @@ class NonceDynamoStorage implements NonceInterface, NonceDynamoStorageInterface
      * @param $data - text
      * @return mixed
      */
-    public function setNonce($id, $data)
+    public function setNonce($id, $data = false)
     {
         $data = (is_null($data) || strlen($data) == 0)
             ? [self::TYPE_NULL => true] : [self::TYPE_STRING => $data];
