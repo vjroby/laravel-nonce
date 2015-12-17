@@ -52,9 +52,9 @@ class NonceDynamoDBTest extends Illuminate\Foundation\Testing\TestCase
     {
         parent::setUp();
 
-        $this->app['config']->set('nonce.database_type', $this->databaseType);
-        $this->app['config']->set('nonce.dynamodb_table_name', $this->dynamoDBtableName);
-        $this->app['config']->set('nonce.dynamodb_table_region', $this->dynamoRegion);
+        $this->app['config']->set('vjroby-laravel-nonce::database_type', $this->databaseType);
+        $this->app['config']->set('vjroby-laravel-nonce::dynamodb_table_name', $this->dynamoDBtableName);
+        $this->app['config']->set('vjroby-laravel-nonc::.dynamodb_table_region', $this->dynamoRegion);
 
         $this->mockAws();
     }
@@ -74,7 +74,7 @@ class NonceDynamoDBTest extends Illuminate\Foundation\Testing\TestCase
 
 
 
-        \Aws\DynamoDb\DynamoDbClient::shouldReceive('factory')->once();
+//       \Aws\DynamoDb\DynamoDbClient::shouldReceive('factory')->once();
     }
 
     public function testCheckNonce()
@@ -83,7 +83,11 @@ class NonceDynamoDBTest extends Illuminate\Foundation\Testing\TestCase
         $data = 'test data';
         $this->dynamoDbClient->shouldReceive('getItem')->once();
 
-        \Nonce::checkNonce($token, $data);
+//        Nonce::checkNonce($token, $data);
+
+        $a = $this->app['vjroby-laravel-nonce'];
+
+        $a->checkNonce($token, $data);
 
     }
 

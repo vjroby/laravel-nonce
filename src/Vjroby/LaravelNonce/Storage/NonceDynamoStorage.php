@@ -69,7 +69,7 @@ class NonceDynamoStorage implements NonceInterface, NonceDynamoStorageInterface
      * @param $data - text
      * @return mixed
      */
-    public function checkNonce($id, $data)
+    public function checkNonce($id, $data = false)
     {
         $item = $this->getItem($id, $data);
         return is_null($item);
