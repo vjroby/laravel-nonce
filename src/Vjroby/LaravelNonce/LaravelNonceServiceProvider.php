@@ -83,7 +83,7 @@ class LaravelNonceServiceProvider extends ServiceProvider
                 }
                 $dynamoDbDomain = App::make('aws')->get('DynamoDb');
 
-                $client = DynamoDbClient::factory([
+                $client =  DynamoDbClient::factory([
                     'credentials' => $dynamoDbDomain->getCredentials(),
                     'region' => $app['config']->get('vjroby-laravel-nonce::dynamodb_table_region')
                 ]);
